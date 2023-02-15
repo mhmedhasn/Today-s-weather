@@ -14,10 +14,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends BaseView<HomeScreen,HomeViewModel>implements HomeNavigator {
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    viewModel.navigator=this;
+    viewModel?.navigator=this;
+    HomeViewModel().getCurrentLocation();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +68,7 @@ class _HomeScreenState extends BaseView<HomeScreen,HomeViewModel>implements Home
               width: 2),
               Padding(
                 padding: const EdgeInsets.all(15),
-                child: Text('30~',style: TextStyle(fontSize: 66),),
+                child: Text('55',style: TextStyle(fontSize: 66),),
               )
 
             ],)

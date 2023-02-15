@@ -17,8 +17,8 @@ abstract class BaseNavigator{
 }
 
 abstract class BaseView<T extends StatefulWidget,VM extends BaseViewModel>
-    extends State<T> implements BaseNavigator{
- late VM viewModel;
+    extends State<T> implements BaseNavigator  {
+  VM? viewModel;
   VM initViewModel();
   @override
   void initState() {

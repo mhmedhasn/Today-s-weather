@@ -6,6 +6,7 @@ class APIManger {
   static Dio? dio;
   String? URl;
 
+
   Map<String, dynamic>? queryParameters;
 
   APIManger({this.URl, this.queryParameters});

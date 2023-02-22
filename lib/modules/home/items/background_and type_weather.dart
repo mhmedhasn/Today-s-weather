@@ -1,0 +1,98 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:weather_to_day/models/WeatherResponse.dart';
+import 'package:weather_to_day/modules/home/items/floating_button.dart';
+import 'package:weather_to_day/shared/constant/constant.dart';
+import 'package:weather_to_day/shared/network/remote/api_manger.dart';
+
+import 'list_five_days.dart';
+
+class Background_Weather extends StatelessWidget {
+  String backgroundImages="${ConstantApp.IMAGE}b_weather.png";
+  String iconImages='${ConstantApp.IMAGE}b_cloudy.png';
+
+  Background_Weather(
+      {required this.backgroundImages, required this.iconImages});
+  @override
+  Widget build(BuildContext context) {
+    WeatherResponse weatherResponse= WeatherResponse();
+
+    var getdata= WeatherService('egypt').getCutrentWeatherData();
+    return Stack(
+      children: [
+        Image.asset(
+          backgroundImages,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            leading: Icon(Icons.arrow_forward_ios, color: Colors.black),
+            title: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: BorderSide(color: Colors.grey)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: BorderSide(color: Colors.grey)),
+                          filled: true,
+                          fillColor: Colors.white,
+                          suffixIcon: Icon(Icons.search, color: Colors.grey),
+                          hintText: '     Search for your location...',
+                          hintStyle: TextStyle(color: Colors.grey),
+                          contentPadding: EdgeInsets.only(top: 10)))),
+            ),
+          ),
+          floatingActionButton:FloutingButton(),
+          body: Column(
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.width * .30),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                SizedBox(width: MediaQuery.of(context).size.width * .11),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text('55',
+                          style: TextStyle(color: Colors.white, fontSize: 92)),
+                      Text('Cloudy',
+                          style: TextStyle(color: Colors.white, fontSize: 30))
+                    ],
+                  ),
+                ),
+                Image.asset(
+                  iconImages,
+                  width: MediaQuery.of(context).size.width * .60,
+                )
+              ]),
+              SizedBox(height: MediaQuery.of(context).size.width * .15),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ListItem(),
+                    SizedBox(width: 8),
+                    ListItem(),
+                    SizedBox(width: 8),
+                    ListItem(),
+                    SizedBox(width: 8),
+                    ListItem(),
+                    SizedBox(width: 8),
+                    ListItem(),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

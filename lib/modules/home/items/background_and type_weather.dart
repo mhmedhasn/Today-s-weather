@@ -8,16 +8,18 @@ import 'package:weather_to_day/shared/network/remote/api_manger.dart';
 import 'list_five_days.dart';
 
 class Background_Weather extends StatelessWidget {
-  String backgroundImages="${ConstantApp.IMAGE}b_weather.png";
-  String iconImages='${ConstantApp.IMAGE}b_cloudy.png';
+  String backgroundImages = "${ConstantApp.IMAGE}b_weather.png";
+  String iconImages = '${ConstantApp.IMAGE}b_cloudy.png';
+  bool xButton = false;
 
   Background_Weather(
       {required this.backgroundImages, required this.iconImages});
+
   @override
   Widget build(BuildContext context) {
-    WeatherResponse weatherResponse= WeatherResponse();
+    WeatherResponse weatherResponse = WeatherResponse();
 
-    var getdata= WeatherService('egypt').getCutrentWeatherData();
+    var getdata = WeatherService('egypt').getCutrentWeatherData();
     return Stack(
       children: [
         Image.asset(
@@ -51,7 +53,7 @@ class Background_Weather extends StatelessWidget {
                           contentPadding: EdgeInsets.only(top: 10)))),
             ),
           ),
-          floatingActionButton:FloutingButton(),
+          floatingActionButton: FloutingButton(),
           body: Column(
             children: [
               SizedBox(height: MediaQuery.of(context).size.width * .30),
@@ -88,6 +90,30 @@ class Background_Weather extends StatelessWidget {
                     ListItem(),
                   ],
                 ),
+              ),
+              SizedBox(height: 88),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),color: Colors.white
+                    ),
+                      width: 180,
+                      height: 45,
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                         children: [
+                           Icon(Icons.settings_sharp,size: 30),
+                           Icon(Icons.location_on_outlined,size: 30),
+                           SizedBox(width: 4),
+
+                         ],
+                       )
+
+                  ),
+                  SizedBox(width: 30),
+
+                ],
               )
             ],
           ),
